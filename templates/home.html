@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    
+    <!-- Custom CSS -->
+    <style>
+        /* Skema Warna RGB Cerah */
+        body {
+            background-color: #c4cdf3; /* AliceBlue */
+        }
+        
+        .navbar {
+            background-color: #f389e7; /* PapayaWhip */
+            transition: background-color 0.5s ease;
+        }
+        
+        .navbar:hover {
+            background-color: #ffe4b5; /* Moccasin */
+        }
+        
+        footer {
+            background-color: #ffd5f9; /* PapayaWhip */
+        }
+        
+        /* Animasi */
+        .animated {
+            animation-duration: 1s;
+            animation-fill-mode: both;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translate3d(0, -100%, 0);
+            }
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+        
+        .fadeInDown {
+            animation-name: fadeInDown;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 100%, 0);
+            }
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+        
+        .fadeInUp {
+            animation-name: fadeInUp;
+        }
+        
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale3d(.3, .3, .3);
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+        
+        .zoomIn {
+            animation-name: zoomIn;
+        }
+        
+        /* Efek Animasi Tambahan */
+        .animated-visible {
+            animation-play-state: running;
+        }
+        
+        /* Styling Kartu */
+        .card-title i {
+            margin-right: 10px;
+        }
+    </style>
+    
+
+    
+    <!-- Custom JavaScript -->
+    <script>
+        $(document).ready(function() {
+            // Animasi Navbar
+            $(".navbar").hide().fadeIn(2000);
+
+            // Animasi saat menggulir
+            $(window).scroll(function() {
+                $('.animated').each(function() {
+                    var elemPos = $(this).offset().top;
+                    var scroll = $(window).scrollTop();
+                    var windowHeight = $(window).height();
+                    if (scroll > elemPos - windowHeight + 100) {
+                        $(this).addClass('animated-visible');
+                    }
+                });
+            });
+
+            // Menambahkan kelas animasi saat terlihat
+            $('.animated').addClass('animated');
+        });
+    </script>
+
+    <!-- Hero Section -->
+    <div class="container mt-5">
+        <h1 class="text-center mb-4 fadeInDown">Selamat datang di Toko Laundry Baju</h1>
+        <p class="lead text-center mb-5 fadeInUp">Kami menyediakan layanan laundry terbaik untuk pakaian Anda dengan kualitas tinggi dan harga terjangkau.</p>
+        
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card h-100 shadow-sm zoomIn animated">
+                    <img src="{% static 'images/l1.jpg' %}" class="card-img-top" alt="Laundry Image 1">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-tshirt text-primary"></i> Layanan Kami</h5>
+                        <p class="card-text">Kami menawarkan berbagai layanan laundry seperti cuci, setrika, dan dry cleaning untuk semua jenis pakaian.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100 shadow-sm zoomIn animated">
+                    <img src="{% static 'images/l2.jpg' %}" class="card-img-top" alt="Laundry Image 2">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-clock text-success"></i> Proses Cepat</h5>
+                        <p class="card-text">Kami memastikan pakaian Anda akan selesai dalam waktu singkat tanpa mengurangi kualitas layanan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endblock content %}

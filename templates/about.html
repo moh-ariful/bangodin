@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <style>
+        .bubble {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(2px);
+            border-radius: 50%;
+            pointer-events: none;
+            box-shadow: inset 0 0 15px rgba(173, 216, 230, 0.6);
+            animation: float 6s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0) rotate(0deg) scale(1);
+            }
+            50% {
+                transform: translateY(-30px) translateX(15px) rotate(180deg) scale(1.1);
+            }
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px;
+            color: white;
+            font-size: 24px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+
+        .social-icon.whatsapp { background: #25D366; }
+        .social-icon.tiktok { background: #000000; }
+        .social-icon.youtube { background: #FF0000; }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            margin: 30px 0;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        body {
+            background: linear-gradient(135deg, #89f7fe, #66a6ff);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .highlight-text {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .service-list {
+            margin: 20px 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .service-list li {
+            margin: 15px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .service-list li:before {
+            content: "✨";
+            position: absolute;
+            left: 0;
+            color: #66a6ff;
+        }
+    </style>
+
+    <div class="container">
+        <div class="content-section">
+            <h1 class="text-center mb-4">Selamat Datang di Fresh & Clean Laundry</h1>
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="lead">Kami adalah solusi terpercaya untuk kebutuhan laundry Anda. Dengan pengalaman lebih dari 5 tahun dalam industri ini, kami berkomitmen untuk memberikan layanan pencucian terbaik dengan standar profesional.</p>
+
+                    <h3 class="highlight-text mt-4">Mengapa Memilih Kami?</h3>
+                    <ul class="service-list">
+                        <li>Teknologi Modern & Eco-Friendly</li>
+                        <li>Tim Profesional & Berpengalaman</li>
+                        <li>Penggunaan Deterjen Premium</li>
+                        <li>Layanan Antar-Jemput Gratis</li>
+                        <li>Garansi Kepuasan 100%</li>
+                    </ul>
+
+                    <h3 class="highlight-text mt-4">Layanan Kami</h3>
+                    <p>Kami menyediakan berbagai layanan laundry premium, termasuk:</p>
+                    <ul class="service-list">
+                        <li>Cuci Reguler & Express</li>
+                        <li>Dry Cleaning Profesional</li>
+                        <li>Setrika Premium</li>
+                        <li>Pembersihan Sepatu</li>
+                        <li>Pembersihan Karpet & Gordyn</li>
+                    </ul>
+
+                    <div class="text-center mt-4">
+                        <h4 class="highlight-text">Hubungi Kami</h4>
+                        <div class="d-flex justify-content-center">
+                            <a href="#" class="social-icon whatsapp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#" class="social-icon tiktok"><i class="fab fa-tiktok"></i></a>
+                            <a href="#" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            
+            const size = Math.random() * 80 + 30;
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+            
+            bubble.style.left = `${Math.random() * 100}vw`;
+            bubble.style.top = `${Math.random() * 100}vh`;
+            
+            document.body.appendChild(bubble);
+            
+            setTimeout(() => {
+                bubble.remove();
+            }, 6000);
+        }
+
+        setInterval(createBubble, 500);
+    </script>
+{% endblock content %}
